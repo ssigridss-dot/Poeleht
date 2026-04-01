@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minu interaktiivne koduleht</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Minu interaktiivne koduleht</h1>
+    <!-- Kasutaja sisestus -->
+    <input type="text" id="inputText" placeholder="Sisesta midagi...">
+    <button onclick="lisaTekst()">Lisa</button>
+
+    <!-- Dünaamiline sisu -->
+    <p id="tulemus"></p>
+
+    <!-- To-do list -->
+    <h2>To-do list</h2>
+    <input type="text" id="todoInput" placeholder="Uus ülesanne">
+    <button onclick="lisaTodo()">Lisa ülesanne</button>
+    <ul id="todoList"></ul>
+
+    <h2>Kalkulaator</h2>
+    <input type="number" id="a">
+    <input type="number" id="b">
+    <button onclick="liida()">Liida</button>
+    <p id="vastus"></p>
+
+    <script src="script.js"></script>
+</body>
+</html>
