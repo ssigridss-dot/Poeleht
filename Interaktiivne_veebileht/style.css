@@ -5,7 +5,7 @@ body {
     margin: 0;
     min-height: 100vh;
 
-    background-image: url("pildid/taevas.jpg");
+    background-image: url("pildid/toit1.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -17,6 +17,7 @@ h1 {
 
 /* INPUT väljad */
 input {
+    width: 150px; /* või näiteks 120px */
     padding: 8px 12px;
     margin: 5px 0;
     border-radius: 5px;       /* ümar kuju */
@@ -48,16 +49,37 @@ button:hover {
     color: #4CAF50;
 }
 
+#filterSelect {
+    width: 170px;
+    padding: 8px 12px;
+    font-size: 14px;
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    outline: none;
+    background-color: white;
+
+    cursor: pointer;
+}
+
+/* natuke hover efekti */
+#filterSelect:hover {
+    border-color: #888;
+}
+
 ul {
+    width: 400px;
     margin-top: 10px;
 }
 
 li {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
 
-    width: fit-content; /* oluline! */
+    width: 100%;
     
     background: white;
     color: black;

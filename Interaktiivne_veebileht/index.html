@@ -6,23 +6,27 @@
     <title>Minu interaktiivne koduleht</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Minu interaktiivne koduleht</h1>
-    
+<body>    
     <!-- Shopping List -->
-    <h2>Poenimekiri</h2>
+    <h1>Poenimekiri</h1>
     <input type="text" id="itemName" placeholder="Toote nimi">
     <input type="number" id="itemPrice" placeholder="Hind (€)">
     <button onclick="addItem()">Lisa toode</button>
+    <br>
 
+    <!-- filter -->
+    <select id="filterSelect" onchange="applyFilter()">
+    <option value="all">Näita kõiki</option>
+    <option value="selected">Näita ainult valitud</option>
+    <option value="unselected">Näita ainult valimata</option>
+    </select>
+
+    <!-- Nimekiri -->
     <ul id="shoppingList"></ul>
 
-    <h3>Maksumus kokku: <span id="total">0</span> €</h3>
-
-    <h2>Viktoriin</h2>
-    
-    
-    
+    <!-- Summad -->
+    <h3>Valitud: <span id="selectedTotal">0.00</span> €</h3>
+    <h3>Maksumus kokku: <span id="total">0.00</span> €</h3>
 
     <script src="script.js"></script>
 </body>
