@@ -7,27 +7,54 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Shopping list -->
-    <h1>Poenimekiri</h1>
-    <input type="text" id="itemName" placeholder="Toote nimi">
-    <input type="number" id="itemPrice" placeholder="Hind (€)">
-    <button onclick="addItem()">Lisa toode</button>
-    <br>
+    <div class="container">
 
-    <!-- filter -->
-    <select id="filterSelect" onchange="applyFilter()">
-    <option value="all">Näita kõiki</option>
-    <option value="selected">Näita ainult valitud</option>
-    <option value="unselected">Näita ainult valimata</option>
-    </select>
+    <!-- SHOPPING -->
+    <div id="shoppingSection" class="card active">
+        <h1>🛒 Poenimekiri</h1>
 
-    <!-- Nimekiri -->
-    <ul id="shoppingList"></ul>
+        <div class="inputs">
+            <input type="text" id="itemName" placeholder="Toote nimi">
+            <input type="number" id="itemPrice" placeholder="Hind (€)">
+            <button onclick="addItem()">Lisa</button>
+        </div>
 
-    <!-- Summad -->
-    <h3>Valitud: <span id="selectedTotal">0.00</span> €</h3>
-    <h3>Maksumus kokku: <span id="total">0.00</span> €</h3>
+        <select id="filterSelect" onchange="applyFilter()">
+            <option value="all">Näita kõiki</option>
+            <option value="selected">Valitud</option>
+            <option value="unselected">Valimata</option>
+        </select>
 
-    <script src="script.js"></script>
+        <ul id="shoppingList"></ul>
+
+        <div class="totals">
+            <p>Valitud: <span id="selectedTotal">0.00</span> €</p>
+            <p>Kokku: <span id="total">0.00</span> €</p>
+        </div>
+
+        <button class="secondary" onclick="avaVorm()">Liitu uudiskirjaga</button>
+    </div>
+
+    <!-- FORM -->
+    <div id="formSection" class="card">
+        <h2>Liitu uudiskirjaga</h2>
+
+        <input type="text" id="nameInput" placeholder="Sinu nimi">
+        <input type="email" id="emailInput" placeholder="Sinu email">
+
+        <button onclick="saadaVorm()">Saada</button>
+        <button class="secondary" onclick="tagasi()">Tagasi</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="successSection" class="card">
+        <h2>Registreerumine õnnestus!</h2>
+        <button onclick="tagasi()">Tagasi nimekirja</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>

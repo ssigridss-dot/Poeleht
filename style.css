@@ -1,97 +1,121 @@
 body {
-    font-family: Arial;
-    background-color: #f4f4f4;
-    padding: 20px;
     margin: 0;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
 
     background-image: url("./pildid/toit1.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+
+    min-height: 100vh;
 }
 
-h1 {
-    color: #333;
+/* vasakule joondus */
+.container {
+    max-width: 420px;
+    margin-left: 60px;
+    margin-top: 60px;
 }
 
-/* INPUT väljad */
-input {
-    width: 150px; /* või näiteks 120px */
-    padding: 8px 12px;
-    margin: 5px 0;
-    border-radius: 5px;       /* ümar kuju */
-    border: 1px solid black;    /* piirjoon */
-    outline: none;
+/* kaart */
+.card {
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(10px);
+
+    padding: 22px;
+    border-radius: 16px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+    display: none;
+}
+
+.card.active {
+    display: block;
+}
+
+/* TEKST */
+h1, h2, p {
+    color: #1f1f1f;
+}
+
+/* =========================
+   🔧 PARANDUS: INPUT RIDA
+   ========================= */
+.inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap; /* oluline */
+}
+
+/* nimi */
+#itemName {
+    flex: 2;
+    min-width: 0;
+}
+
+/* hind (SEE OLI KADUNUD PROBLEEM) */
+#itemPrice {
+    flex: 1;
+    min-width: 90px;   /* 👈 SEE TAGAB ET EI KAO */
+}
+
+/* input + select */
+input, select {
+    width: 100%;
+    padding: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
     font-size: 14px;
+    box-sizing: border-box;
 }
 
-/* Kui input on aktiivne */
-input:focus {
-    border-color: #4CAF50;     /* roheline äär */
-}
-
-/* NUPP */
+/* nupp */
 button {
-    padding: 8px 12px;
-    margin: 5px 0;
-    border-radius: 5px;       /* sama ümarus */
-    border: 1px solid black; /* piirjoon */
-    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+
+    background: #4CAF50;
     color: white;
-    cursor: pointer;
     font-weight: bold;
-}
-
-/* Hover efekt */
-button:hover {
-    background-color: white;
-    color: #4CAF50;
-}
-
-#filterSelect {
-    width: 170px;
-    padding: 8px 12px;
-    font-size: 14px;
-
-    border: 1px solid black;
-    border-radius: 5px;
-
-    outline: none;
-    background-color: white;
 
     cursor: pointer;
 }
 
-/* natuke hover efekti */
-#filterSelect:hover {
-    border-color: #888;
+/* secondary */
+button.secondary {
+    background: transparent;
+    border: 1px solid #444;
+    color: #222;
+    margin-top: 8px;
 }
 
+/* list */
 ul {
-    width: 400px;
-    margin-top: 10px;
+    list-style: none;
+    padding: 0;
 }
 
 li {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 10px;
 
-    width: 100%;
-    
-    background: white;
-    color: black;
-    padding: 8px 12px;
-    margin: 5px 0;
-    border-radius: 5px;
-    border: 1px solid black;
-    cursor: pointer;
+    background: rgba(255,255,255,0.9);
+    padding: 10px;
+
+    margin-top: 8px;
+    border-radius: 10px;
 }
 
-div {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
+/* animatsioon */
+.card {
+    animation: fade 0.25s ease;
+}
+
+@keyframes fade {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
 }

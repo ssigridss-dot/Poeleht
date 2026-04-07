@@ -1,96 +1,96 @@
-// Teksti lisamine
-function lisaTekst() {
-    const input = document.getElementById("inputText").value;
-    document.getElementById("tulemus").textContent = "Sa kirjutasid: " + input;
-}
-
-// poenimekirja funktsioon
 let total = 0;
 let selectedTotal = 0;
 
-// summa valitud toodetele
+// VAATE VAHETUS (FIX)
+function showSection(id) {
+    document.querySelectorAll(".card").forEach(el => {
+        el.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+}
+
+// UUDISKIRI
+function avaVorm() {
+    showSection("formSection");
+}
+
+function saadaVorm() {
+    const nimi = document.getElementById("nameInput").value;
+    const email = document.getElementById("emailInput").value;
+
+    if (!nimi || !email) {
+        alert("Täida kõik väljad!");
+        return;
+    }
+
+    showSection("successSection");
+}
+
+function tagasi() {
+    showSection("shoppingSection");
+}
+
+// SUMMAD
 function updateSelectedTotal() {
     selectedTotal = 0;
 
     document.querySelectorAll("#shoppingList li").forEach(li => {
-        const cb = li.querySelector("input[type='checkbox']");
-        const price = parseFloat(cb.dataset.price);
-
+        const cb = li.querySelector("input");
         if (cb.checked) {
-            selectedTotal += price;
+            selectedTotal += Number(cb.dataset.price);
         }
     });
 
     document.getElementById("selectedTotal").textContent = selectedTotal.toFixed(2);
 }
 
-// filter
+// FILTER
 function applyFilter() {
     const filter = document.getElementById("filterSelect").value;
 
     document.querySelectorAll("#shoppingList li").forEach(li => {
-        const cb = li.querySelector("input[type='checkbox']");
+        const cb = li.querySelector("input");
 
-        if (filter === "all") {
-            li.style.display = "flex";
-        }
-
-        if (filter === "selected") {
-            li.style.display = cb.checked ? "flex" : "none";
-        }
-
-        if (filter === "unselected") {
-            li.style.display = !cb.checked ? "flex" : "none";
-        }
+        if (filter === "all") li.style.display = "flex";
+        if (filter === "selected") li.style.display = cb.checked ? "flex" : "none";
+        if (filter === "unselected") li.style.display = !cb.checked ? "flex" : "none";
     });
 }
 
-// lisa toode
+// LISA TOODE
 function addItem() {
-    const nameInput = document.getElementById("itemName");
-    const priceInput = document.getElementById("itemPrice");
-
-    const name = nameInput.value.trim();
-    const price = Number(priceInput.value);
+    const name = document.getElementById("itemName").value.trim();
+    const price = Number(document.getElementById("itemPrice").value);
 
     if (!name || price <= 0) {
         alert("Sisesta korrektne nimi ja hind!");
         return;
     }
 
-    // Lisa kogusummale
     total += price;
 
-    // Loo listi element
     const li = document.createElement("li");
-    li.style.display = "flex";
-    li.style.gap = "10px";
 
-    // checkbox
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.dataset.price = price;
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.dataset.price = price;
 
-    checkbox.onchange = function () {
+    cb.onchange = () => {
         updateSelectedTotal();
         applyFilter();
     };
 
-    // nimi
-    const nameSpan = document.createElement("span");
-    nameSpan.textContent = `${name} - ${price} €`;
-    nameSpan.style.flex = "1";
+    const span = document.createElement("span");
+    span.textContent = `${name} - ${price} €`;
+    span.style.flex = "1";
 
-    // nupp
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Eemalda";
+    const btn = document.createElement("button");
+    btn.textContent = "Eemalda";
 
-    removeBtn.onclick = function () {
+    btn.onclick = () => {
         total -= price;
-
-        if (checkbox.checked) {
-            selectedTotal -= price;
-        }
+        if (cb.checked) selectedTotal -= price;
 
         li.remove();
 
@@ -98,16 +98,14 @@ function addItem() {
         document.getElementById("selectedTotal").textContent = selectedTotal.toFixed(2);
     };
 
-    li.appendChild(checkbox);
-    li.appendChild(nameSpan);
-    li.appendChild(removeBtn);
+    li.appendChild(cb);
+    li.appendChild(span);
+    li.appendChild(btn);
 
     document.getElementById("shoppingList").appendChild(li);
 
-    // Uuenda kogusumma
     document.getElementById("total").textContent = total.toFixed(2);
 
-    // Tühjenda inputid
-    nameInput.value = "";
-    priceInput.value = "";
+    document.getElementById("itemName").value = "";
+    document.getElementById("itemPrice").value = "";
 }
